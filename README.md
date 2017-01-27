@@ -9,6 +9,14 @@ Scala aws lambda examples
 
 The project have java and scala packages and have two simple examples to play with lambdas
 
+The config file **src/main/resources/application.conf** contains the credentials,source and destination bucket
+
+   `aws {
+     user = ""
+     pass = ""
+     srcBucket = "src"
+     destBucket = "dest"
+   }`
 
 Java package is under **src/main/java/lambda** with one class **RandomHelloWorld**, that have the method `handleJava`
 
@@ -52,4 +60,33 @@ In my learning path i discovered that if you add in the dependencies the
  
 Then in the aws console, when you run the lambda , the result is `classNotFoundException`
   
+## Create the lambda function
   
+*In the aws console, choose  *Lambda ->  Create a Lambda Function*
+
+![first](https://github.com/gastonlucero/scalaAwsLambda/blob/master/images/first.png)
+  
+
+*Then select *Blank Function* 
+
+![second](https://github.com/gastonlucero/scalaAwsLambda/blob/master/images/second.png)
+  
+
+*Configure the s3 trigger (here you choose the event type and the source bucket)*
+
+![third](https://github.com/gastonlucero/scalaAwsLambda/blob/master/images/third.png)
+
+
+*Select the runtime, Java 8 in this case*
+
+![fourth](https://github.com/gastonlucero/scalaAwsLambda/blob/master/images/fourth.png)
+  
+
+*The important configuration is here, the Handler is *package.class::handlerMethodName*, and select the role*
+
+![fifth](https://github.com/gastonlucero/scalaAwsLambda/blob/master/images/fifth.png)
+
+
+And thats all, ready to test
+
+In test package , the **TestLambda** class , have a method to put an object in a source scala bucket
