@@ -10,19 +10,19 @@ Scala aws lambda examples
 The project have java and scala packages and have two simple examples to play with lambdas
 
 The config file **src/main/resources/application.conf** contains the credentials,source and destination bucket
-
-   `aws {
-     user = ""
-     pass = ""
-     srcBucket = "src"
-     destBucket = "dest"
-   }`
+    
+    aws {
+        user = "user"
+        pass = "pass"
+        srcBucket = "src"
+        destBucket = "dest"
+    }
 
 Java package is under **src/main/java/lambda** with one class **RandomHelloWorld**, that have the method `handleJava`
 
 This method is invoked by aws when the lambda function runs. 
 
-   `public String handleJava(int number, Context context)` 
+    public String handleJava(int number, Context context) 
 
 Return a `String` and receive two parameters,an int value, and the second is the `Context` (from which the log can be accessed)
 
@@ -34,11 +34,11 @@ Scala package is under **src/main/scala/lambda** with one class **S3CopyToBucket
 This method is invoked when an operation in the source bucket (you decide which operation in the aws console) is executed.
 Basically makes a copy from the source bucket to the destination bucket, adding the suffix *lambda* to the key result.
 
-    `override def handleRequest(s3Event: S3Event, context: Context): String` 
+    override def handleRequest(s3Event: S3Event, context: Context): String 
     
 And return a presigned url to download the object , with an expiration timeout, in the example is 
   
-  `val milliSeconds = new java.util.Date().getTime() + 1000 * 60`
+    val milliSeconds = new java.util.Date().getTime() + 1000 * 60
   
 The result is a URI string
 
