@@ -22,7 +22,8 @@ lazy val dependencies = Seq(
   "com.amazonaws" % "aws-lambda-java-events" % "1.3.0",
   "com.amazonaws" % "aws-lambda-java-log4j" % "1.0.0",
   "com.typesafe" % "config" % "1.3.1",
-  "org.scalatest" % "scalatest_2.12" % "3.0.1" % Test
+  "org.scalatest" % "scalatest_2.12" % "3.0.1" % Test,
+  "junit" % "junit" % "4.10" % Test
 )
 
 assemblyMergeStrategy in assembly := {
