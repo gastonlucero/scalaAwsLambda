@@ -53,6 +53,10 @@ The result is a URI string
   
   *"com.typesafe" % "config" % "1.3.1"*
   
+  *"org.scalatest" %% "scalatest" % "2.2.6" % Test*
+  
+  *"junit" % "junit" % "4.10" % Test*
+  
   
 In my learning path i discovered that if you add in the dependencies the 
 
