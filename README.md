@@ -55,7 +55,7 @@ The result is a URI string
   
 In my learning path i discovered that if you add in the dependencies the 
 
-*"com.amazonaws" % "aws-java-sdk" % "1.11.80"*
+    "com.amazonaws" % "aws-java-sdk" % "1.11.80"
  
 Then in the aws console, when you run the lambda , the result is `classNotFoundException`
   
