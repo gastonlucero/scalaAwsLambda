@@ -42,6 +42,7 @@ And return a presigned url to download the object , with an expiration timeout, 
   
 The result is a URI string
 
+Next, fire up sbt compile followed by sbt assembly , to obtain /PathtoPrject/target/scala-2.12/awsLambdaScala-assembly-<Version>.jar
 
 ## sbt Dependencies
 
@@ -76,7 +77,7 @@ Then in the aws console, when you run the lambda , the result is `classNotFoundE
 ![third](https://github.com/gastonlucero/scalaAwsLambda/blob/master/images/third.png)
 
 
-*Select the runtime, Java 8 in this case*
+*Select the runtime, Java 8 in this case, and upload the jar, or the link to s3*
 
 ![fourth](https://github.com/gastonlucero/scalaAwsLambda/blob/master/images/fourth.png)
   
