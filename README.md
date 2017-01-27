@@ -93,4 +93,5 @@ Then in the aws console, when you run the lambda , the result is `classNotFoundE
 
 And thats all, ready to test
 
-In test package , the **TestLambda** class , have a method to put an object in a source scala bucket
+In test package , the **TestLambda** class , have a method to put an object in a source scala bucket.
+The file you upload to the source bucket , with the key **test** must exists in the destination name with the key **testlambda**
