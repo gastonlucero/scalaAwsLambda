@@ -21,25 +21,31 @@ import com.typesafe.config.{Config, ConfigFactory}
 
 
 /**
-  * Use configFacfory from typesafe
+  * Using configFacfory from typesafe
   */
 trait ConfigBase {
-  val config : Config = ConfigFactory.load("application.conf")
+  val config: Config = ConfigFactory.load("application.conf")
 
 }
 
-class S3CopyToBucketLambda extends RequestHandler[S3Event, String] with ConfigBase{
+/**
+  * The handler in the Aws Lambda console is lambda.S3CopyToBucketLambda::handleRequest
+  */
+class S3CopyToBucketLambda extends RequestHandler[S3Event, String] with ConfigBase {
 
   /**
-    * The handler is invoked when an event is triggered from a busket
-    * @param s3Event
-    * @param context
-    * @return
+    * The handler is invoked when an event is triggered from a bucket (configured in the aws lambda console ) and copy to
+    * the destBucket the file who was affected in the srcBucket
+    *
+    * @param s3Event Its the input variable
+    * @param context The context constain the lambdalogger to see in cloudWatch
+    * @return the output value of the handler
     */
   override def handleRequest(s3Event: S3Event, context: Context): String = {
     val s3Client: AmazonS3Client = new AmazonS3Client(new BasicAWSCredentials(
-      config.getString("aws.user"),config.getString("aws.pass")))
-    context.getLogger.log("evento " + s3Event.toJson)
+      config.getString("aws.user"), config.getString("aws.pass")))
+
+    context.getLogger.log("s3 event " + s3Event.toJson)
     val destBucket: String = config.getString("aws.destBucket")
 
     context.getLogger.log(context.getLogGroupName)
@@ -48,6 +54,7 @@ class S3CopyToBucketLambda extends RequestHandler[S3Event, String] with ConfigBa
     println(context.getLogStreamName)
 
     var result = ""
+    //For each s3Record, make a copy of then in destBucket
     s3Event.getRecords.asScala.foreach(e => {
       try {
         context.getLogger().log(e.getS3().getBucket().getName() + " " + e.getS3().getObject().getKey())
@@ -60,6 +67,7 @@ class S3CopyToBucketLambda extends RequestHandler[S3Event, String] with ConfigBa
         val presignedUrl = new GeneratePresignedUrlRequest(destBucket, e.getS3().getObject().getKey() + "_lambda", HttpMethod.GET)
           .withExpiration(new Date(milliSeconds))
         result = s3Client.generatePresignedUrl(presignedUrl).toURI().toString()
+
       } catch {
         case ee: Exception => context.getLogger().log(ee.getMessage())
       }
