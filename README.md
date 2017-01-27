@@ -7,7 +7,7 @@ Scala aws lambda examples
 * jdk 1.8.0_112
 * scala 2.12
 
-The project have java and scala packages    
+The project have java and scala packages and have two simple examples to play with lambdas
 
 
 Java package is under **src/main/java/lambda** with one class **RandomHelloWorld**, that have the method `handleJava`
