@@ -45,12 +45,12 @@ The result is a URI string
 
 ## sbt Dependencies
 
-  `val dependencies = Seq("com.amazonaws" % "aws-lambda-java-core" % "1.1.0"`
-  `"com.amazonaws" % "aws-lambda-java-events" % "1.3.0"`
-  `"com.amazonaws" % "aws-lambda-java-log4j" % "1.0.0"`
-  `"com.typesafe" % "config" % "1.3.1"`
-  `"org.scalatest" %% "scalatest" % "2.2.6" % Test`
-  `"junit" % "junit" % "4.10" % Test)` 
+  `val dependencies = Seq("com.amazonaws" % "aws-lambda-java-core" % "1.1.0",
+  "com.amazonaws" % "aws-lambda-java-events" % "1.3.0",
+  "com.amazonaws" % "aws-lambda-java-log4j" % "1.0.0",
+  "com.typesafe" % "config" % "1.3.1",
+  "org.scalatest" %% "scalatest" % "2.2.6" % Test,
+  "junit" % "junit" % "4.10" % Test)` 
   
 In my learning path i discovered that if you add in the dependencies the 
 
